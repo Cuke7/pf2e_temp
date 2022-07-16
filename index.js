@@ -1,8 +1,9 @@
 const fs = require('fs');
 let glob = require('glob');
-let dictionary = require('./fullDictionary2.json')
+let dictionary = require('./Dictionaries/dictionary.json')
+let idpaths = require('./Dictionaries/idPaths.json')
 
-exports.translate = function (nameEN) {
+exports.translateToFr = function (nameEN) {
     let translation = dictionary.find(item => item.nameEN.toLowerCase() === nameEN.toLowerCase())
     if (translation) return translation.nameFR
     return undefined
@@ -10,66 +11,51 @@ exports.translate = function (nameEN) {
 
 exports.getDataSets = function (category) {
     return new Promise(async function (resolve, reject) {
-        glob("PF2E_data_EN/" + category + ".db/*.json", async function (er, files) {
+        glob("PF2E_DATA_EN/" + category + ".db/*.json", async function (er, files) {
             let result = await readFiles(files)
             resolve(result)
         })
     })
 }
 
-exports.getItemById = async function (itemID, lang) {
-    if (lang == "fr") {
-        let err = { nameFR: null, descriptionFR: null, references: [] }
+exports.getDataEn = async function (itemID) {
+    let itemTemp = idpaths.find(item => item.id == itemID)
+    if (!itemTemp) return Promise.resolve(null)
+    const data = await fs.promises.readFile("./PF2E_DATA_EN/" + itemTemp.path);
+    let item = JSON.parse(data)
+    return Promise.resolve(item)
+}
 
-        return new Promise(function (resolve, reject) {
-            let item = dictionary.find(item => item.link.split("/")[1].includes(itemID))
-            if (!item) resolve(err)
-
-            let nameFR = item.nameFR
-            let category = item.link.split("/")[0]
-            let id = item.link.split("/")[1]
-
-            fs.readFile("PF2E_data_FR/" + category + "/" + id + ".htm", "utf8", function (err, data) {
-                if (err) resolve(err)
-                let description = null
-                description = data.split("Description (fr) ------\r\n")[1]
-                // description = data.split("Description (fr) ------\n")[1]
-                if (!description) resolve(err)
-                let references = []
-                let regex =
-                    /@Compendium\[pf2e\.[ ]*?([A-z-0-9]*?)\.[ ]*?([A-z0-9]*?)\]\{(.*?)[\}|\]*]/gm;
-                let descriptionFR = description;
-                let matchs = descriptionFR.matchAll(regex);
-                let count = '*';
-                for (const match of matchs) {
-                    descriptionFR = descriptionFR.replace(
-                        match[0],
-                        "<b>" + match[3] + count + "</b>"
-                    );
-                    references.push({
-                        name: match[3],
-                        id: match[2],
-                    })
-                    count += "*"
-                }
-                resolve({ nameFR, descriptionFR, references })
-            })
+exports.getDataFr = async function (itemID) {
+    let err = { nameFR: null, descriptionFR: null, references: [] }
+    let item = dictionary.find(item => item.pathFR.split("/")[1].includes(itemID))
+    if (!item) return Promise.resolve(err)
+    let nameFR = item.nameFR
+    let data = await fs.promises.readFile("PF2E_DATA_FR/" + item.pathFR + ".htm").catch(err => console.log(err))
+    if (!data) return Promise.resolve(err)
+    let description = null
+    data = data + ""
+    //description = data.split("Description (fr) ------\r\n")[1]
+    description = data.split("Description (fr) ------\n")[1]
+    if (!description) return Promise.resolve(err)
+    let references = []
+    let regex =
+        /@Compendium\[pf2e\.[ ]*?([A-z-0-9]*?)\.[ ]*?([A-z0-9]*?)\]\{(.*?)[\}|\]*]/gm;
+    let descriptionFR = description;
+    let matchs = descriptionFR.matchAll(regex);
+    let count = '*';
+    for (const match of matchs) {
+        descriptionFR = descriptionFR.replace(
+            match[0],
+            "<b>" + match[3] + count + "</b>"
+        );
+        references.push({
+            name: match[3],
+            id: match[2],
         })
+        count += "*"
     }
-
-    if (lang == "en") {
-        const folderList = fs.readdirSync("PF2E_data_EN")
-        for (const folder of folderList) {
-            const files = fs.readdirSync("PF2E_data_EN/" + folder)
-            for (const file of files) {
-                const data = await fs.promises.readFile("PF2E_data_EN/" + folder + "/" + file);
-                let item = JSON.parse(data)
-                if (item._id == itemID) return Promise.resolve(item)
-            }
-        }
-    }
-
-    return Promise.resolve(null)
+    return Promise.resolve({ nameFR, descriptionFR, references })
 }
 
 async function readFiles(files) {
