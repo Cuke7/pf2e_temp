@@ -1,0 +1,59 @@
+{
+    "_id": "aLgb1x3azE4IKz0o",
+    "data": {
+        "actionCategory": {
+            "value": "offensive"
+        },
+        "actionType": {
+            "value": "passive"
+        },
+        "actions": {
+            "value": null
+        },
+        "description": {
+            "value": "<p>Whenever you critically hit using @Compendium[pf2e.equipment-srd.Flail]{Flail}, @Compendium[pf2e.equipment-srd.Khopesh]{Khopesh}, @Compendium[pf2e.equipment-srd.Mambele]{Mambele}, @Compendium[pf2e.equipment-srd.Spear]{Spear}, and @Compendium[pf2e.equipment-srd.War Flail]{War Flail}, you apply the weapon's critical specialization effect.</p>"
+        },
+        "featType": {
+            "value": "ancestry"
+        },
+        "level": {
+            "value": 5
+        },
+        "location": null,
+        "prerequisites": {
+            "value": [
+                {
+                    "value": "Gnoll Weapon Familiarity"
+                }
+            ]
+        },
+        "rules": [
+            {
+                "key": "CriticalSpecialization",
+                "predicate": {
+                    "any": [
+                        "weapon:trait:gnoll",
+                        "weapon:base:flail",
+                        "weapon:base:khopesh",
+                        "weapon:base:mambele",
+                        "weapon:base:spear",
+                        "weapon:base:war-flail"
+                    ]
+                }
+            }
+        ],
+        "source": {
+            "value": "Pathfinder Lost Omens: The Mwangi Expanse"
+        },
+        "traits": {
+            "custom": "",
+            "rarity": "common",
+            "value": [
+                "gnoll"
+            ]
+        }
+    },
+    "img": "systems/pf2e/icons/features/feats/feats.webp",
+    "name": "Gnoll Weapon Practicality",
+    "type": "feat"
+}

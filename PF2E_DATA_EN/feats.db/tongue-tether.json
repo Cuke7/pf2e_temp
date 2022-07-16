@@ -1,0 +1,45 @@
+{
+    "_id": "5j3nLvicUVmPqzA7",
+    "data": {
+        "actionCategory": {
+            "value": "interaction"
+        },
+        "actionType": {
+            "value": "passive"
+        },
+        "actions": {
+            "value": null
+        },
+        "description": {
+            "value": "<p>Your tongue can momentarily latch on as readily as your hands. So long as you can freely open your mouth, you do not need free hands in order to @Compendium[pf2e.actionspf2e.Disarm]{Disarm}, @Compendium[pf2e.actionspf2e.Grab an Edge]{Grab an Edge}, or @Compendium[pf2e.actionspf2e.Trip]{Trip}.</p>\n<p>If you have the @Compendium[pf2e.feats-srd.Long Tongue]{Long Tongue} feat, you can Disarm, Grab an Edge, and Trip with your tongue at a distance that is 5 feet beyond your normal reach.</p>"
+        },
+        "featType": {
+            "value": "ancestry"
+        },
+        "level": {
+            "value": 9
+        },
+        "location": null,
+        "prerequisites": {
+            "value": [
+                {
+                    "value": "snaptongue grippli"
+                }
+            ]
+        },
+        "rules": [],
+        "source": {
+            "value": "Pathfinder Lost Omens: The Mwangi Expanse"
+        },
+        "traits": {
+            "custom": "",
+            "rarity": "common",
+            "value": [
+                "grippli"
+            ]
+        }
+    },
+    "img": "systems/pf2e/icons/default-icons/feats.webp",
+    "name": "Tongue Tether",
+    "type": "feat"
+}

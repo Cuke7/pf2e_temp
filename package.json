@@ -1,0 +1,11 @@
+{
+    "name": "pf2e-database",
+    "version": "1.0.0",
+    "description": "Database module for Pathfinder 2.",
+    "main": "index.js",
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "glob": "^8.0.3"
+    }
+}

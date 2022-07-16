@@ -1,0 +1,63 @@
+{
+    "_id": "ROnjdPMvH0vkkWjQ",
+    "data": {
+        "actionCategory": {
+            "value": ""
+        },
+        "actionType": {
+            "value": "passive"
+        },
+        "actions": {
+            "value": null
+        },
+        "description": {
+            "value": "<p>You exude an aura of resolve. You and allies within 15 feet of you gain a +2 status bonus to Will saving throws against mental effects.</p>\n<hr />\n<p>@Compendium[pf2e.feat-effects.Effect: Enlightened Presence]{Effect: Enlightened Presence}</p>"
+        },
+        "featType": {
+            "value": "class"
+        },
+        "level": {
+            "value": 16
+        },
+        "location": "",
+        "prerequisites": {
+            "value": []
+        },
+        "rules": [
+            {
+                "effects": [
+                    {
+                        "affects": "allies",
+                        "events": [
+                            "enter"
+                        ],
+                        "uuid": "Compendium.pf2e.feat-effects.XM1AA8z5cHm8sJXM"
+                    }
+                ],
+                "key": "Aura",
+                "radius": 15,
+                "slug": "enlightened-presence",
+                "traits": [
+                    "emotion",
+                    "mental"
+                ]
+            }
+        ],
+        "source": {
+            "value": "Pathfinder Core Rulebook"
+        },
+        "traits": {
+            "custom": "",
+            "rarity": "common",
+            "value": [
+                "aura",
+                "emotion",
+                "mental",
+                "monk"
+            ]
+        }
+    },
+    "img": "systems/pf2e/icons/features/feats/feats.webp",
+    "name": "Enlightened Presence",
+    "type": "feat"
+}
