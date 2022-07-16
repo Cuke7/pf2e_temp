@@ -1,9 +1,16 @@
 # pf2e-database
+
 pf2e-database is a module alowing to access data from Pathfinder 2E.
+
+Disclaimer : the data doesn't belong to me and this project was purely made as an exercise.
+
 ### Get datasets
+
 #### `db.getDataSets(dataSetName) -> promise`
+
 See the list of allowed **_dataSetName_** arguments [here](https://github.com/foundryvtt/pf2e/tree/master/packs/data).
 **Exemple:**
+
 ```javascript
 const db = require("pf2e-database");
 let set = await db.getDataSets("classes");
@@ -44,20 +51,28 @@ console.log(set);
       ...
 */
 ```
+
 ### French translation
+
 #### `db.translate(item) -> string`
+
 Get the french translation for the **_item_** provided.
 **Exemple:**
+
 ```javascript
 const db = require("pf2e-database");
 let nameFR = db.translate("Breath Weapon");
 console.log(nameFR);
 // Arme de souffle
 ```
+
 ### French description
+
 #### `db.getItemById(id) -> promise`
+
 Get the french description for an item by providing his **_id_**. Whenever the description makes a reference to another item, the item name and id is provided in the **_references_** field.
 **Exemple:**
+
 ```javascript
 const db = require("pf2e-database");
 let description = db.getItemById("Xg57qG1rOfSSobke");
